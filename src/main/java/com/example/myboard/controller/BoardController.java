@@ -4,7 +4,6 @@ package com.example.myboard.controller;
 import com.example.myboard.dto.CreateBoardDto;
 import com.example.myboard.dto.GetBoardDto;
 import com.example.myboard.dto.TestDetailDto;
-import com.example.myboard.entity.Board;
 import com.example.myboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,5 +30,12 @@ public class BoardController {
     @GetMapping("{boardId}")
     public ResponseEntity<TestDetailDto.Response> detailBoard(@PathVariable Long boardId){
         return ResponseEntity.status(HttpStatus.OK).body(boardService.getDetail(boardId));
+    }
+
+    @DeleteMapping("{boardId}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable Long boardId){
+        boardService.deleteBoard(boardId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+
     }
 }
